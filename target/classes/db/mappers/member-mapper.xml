@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rm.member">
+
+	<insert id="insert" parameterType="member">
+		INSERT INTO rm_member (mid, mpassword, memail, mregdate) 
+		VALUES (#{mid}, password(#{mpassword}), #{memail}, now())
+	</insert>
+	
+	<insert id="insert_pk" parameterType="member">
+		INSERT INTO rm_member (mid, mpassword, memail, mregdate) 
+		VALUES (#{mid}, password(#{mpassword}), #{memail}, now())
+	    <selectKey resultType="int" keyProperty="mseq" order="AFTER">
+	        SELECT LAST_INSERT_ID()
+	    </selectKey>   		
+	</insert>
+	
+	<update id="update" parameterType="member">
+		UPDATE rm_board SET 
+			mpassword = password(#{mpassword}), 
+			memail = #{memail} 
+		WHERE mseq = #{mseq}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM rm_member WHERE mseq = #{mseq} 
+	</delete>
+	
+	<delete id="delete_all">
+	<![CDATA[
+		DELETE FROM rm_member WHERE mseq < 1000000
+	]]>
+	</delete>	
+</mapper>
