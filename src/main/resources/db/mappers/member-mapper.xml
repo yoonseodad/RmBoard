@@ -29,8 +29,15 @@
 	</update>
 	
 	<delete id="delete" parameterType="int">
-		DELETE FROM rm_member WHERE mseq = #{mseq} 
+		UPDATE rm_member SET
+			mdeletedate = now(), 
+			mdeleteyn = 'Y' 		
+		WHERE mseq = #{mseq}
 	</delete>
+	
+	<delete id="delete_real" parameterType="int">
+		DELETE FROM rm_member WHERE mseq = #{mseq} 
+	</delete>	
 	
 	<delete id="delete_all">
 	<![CDATA[
