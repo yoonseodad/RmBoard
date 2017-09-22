@@ -5,13 +5,13 @@
 <mapper namespace="com.rm.member">
 
 	<insert id="insert" parameterType="member">
-		INSERT INTO rm_member (mid, mpassword, memail, mregdate) 
-		VALUES (#{mid}, password(#{mpassword}), #{memail}, now())
+		INSERT INTO rm_member (mid, mname, mpassword, memail, mregdate) 
+		VALUES (#{mid}, #{mname}, password(#{mpassword}), #{memail}, now())
 	</insert>
 	
 	<insert id="insert_pk" parameterType="member">
-		INSERT INTO rm_member (mid, mpassword, memail, mregdate) 
-		VALUES (#{mid}, password(#{mpassword}), #{memail}, now())
+		INSERT INTO rm_member (mid, mname, mpassword, memail, mregdate) 
+		VALUES (#{mid}, #{mname}, password(#{mpassword}), #{memail}, now())
 	    <selectKey resultType="int" keyProperty="mseq" order="AFTER">
 	        SELECT LAST_INSERT_ID()
 	    </selectKey>   		
@@ -46,10 +46,10 @@
 	</delete>	
 	
 	<select id="select" resultType="member" parameterType="int">
-		SELECT * FROM rm_member WHERE mseq = #{mseq} 
+		SELECT rm_member.* FROM rm_member WHERE mseq = #{mseq} 
 	</select>
 	
 	<select id="select_all" resultType="member">
-		SELECT * FROM rm_member ORDER BY mregdate desc  
+		SELECT rm_member.* FROM rm_member ORDER BY mregdate desc  
 	</select>	
 </mapper>

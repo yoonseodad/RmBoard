@@ -2,6 +2,7 @@ package com.rm.member.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rm.member.MemberDAO;
@@ -11,6 +12,7 @@ import com.rm.member.MemberVO;
 @Service("MemberService")
 public class MemberServiceImpl implements MemberService {
 	
+	@Autowired
 	MemberDAO dao;
 
 	@Override

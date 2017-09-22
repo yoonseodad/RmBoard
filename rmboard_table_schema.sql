@@ -4,6 +4,7 @@
 CREATE TABLE rm_member (
 	mseq			int auto_increment comment '시퀀스키', 
 	mid				varchar(20) not null comment '시퀀스키', 
+	mname			varchar(20) not null comment '이름', 
 	mpassword		varchar(50) not null comment '시퀀스키', 
 	memail			varchar(100) not null comment '시퀀스키', 
 	mregdate		date not null comment '가입일',
@@ -24,6 +25,6 @@ CREATE TABLE rm_board (
 	btitle			varchar(100) not null comment '제목', 
 	bcontent		text not null comment '내용', 
 	bregdate		date not null comment '등록일', 
-	bcnt			int default 0 comment 'hit 수'				
+	bcnt			int default 0 comment 'hit 수',				
 	primary			key(bseq)	
 ) comment '게시판 테이블'

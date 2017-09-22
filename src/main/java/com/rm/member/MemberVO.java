@@ -8,6 +8,7 @@ public class MemberVO {
 
 	private int mseq;
 	private String mid;
+	private String mname;
 	private String mpassword;
 	private String memail;
 	private Date mregdate;
@@ -16,28 +17,6 @@ public class MemberVO {
 	private String mresetyn;
 	
 	public MemberVO() {}
-	
-	public MemberVO(int mseq, String mid, String mpassword, String memail, Date mregdate, Date mdeletedate,
-			String mdeleteyn, String mresetyn) {
-		this.mid = mid;
-		this.mpassword = mpassword;
-		this.memail = memail;
-		this.mregdate = mregdate;
-		this.mdeletedate = mdeletedate;
-		this.mdeleteyn = mdeleteyn;
-		this.mresetyn = mresetyn;
-	}
-	
-	public MemberVO(String mid, String mpassword, String memail, Date mregdate, Date mdeletedate,
-			String mdeleteyn, String mresetyn) {
-		this.mid = mid;
-		this.mpassword = mpassword;
-		this.memail = memail;
-		this.mregdate = mregdate;
-		this.mdeletedate = mdeletedate;
-		this.mdeleteyn = mdeleteyn;
-		this.mresetyn = mresetyn;
-	}
 
 	/**
 	 * @return the mseq
@@ -73,7 +52,13 @@ public class MemberVO {
 		this.mid = mid;
 	}
 
+	public String getMname() {
+		return mname;
+	}
 
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
 
 	/**
 	 * @return the mpassword
@@ -81,8 +66,6 @@ public class MemberVO {
 	public String getMpassword() {
 		return mpassword;
 	}
-
-
 
 	/**
 	 * @param mpassword the mpassword to set
