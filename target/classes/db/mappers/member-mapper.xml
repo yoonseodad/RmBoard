@@ -18,9 +18,13 @@
 	</insert>
 	
 	<update id="update" parameterType="member">
-		UPDATE rm_board SET 
-			mpassword = password(#{mpassword}), 
+		UPDATE rm_member SET 
+			<if test="mpassword != null">
+			mpassword = password(#{mpassword}),
+			</if>
+			<if test="memail != null"> 
 			memail = #{memail} 
+			</if>
 		WHERE mseq = #{mseq}
 	</update>
 	
@@ -33,4 +37,12 @@
 		DELETE FROM rm_member WHERE mseq < 1000000
 	]]>
 	</delete>	
+	
+	<select id="select" resultType="member" parameterType="int">
+		SELECT * FROM rm_member WHERE mseq = #{mseq} 
+	</select>
+	
+	<select id="select_all" resultType="member">
+		SELECT * FROM rm_member ORDER BY mregdate desc  
+	</select>	
 </mapper>

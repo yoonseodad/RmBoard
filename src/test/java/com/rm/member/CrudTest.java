@@ -42,9 +42,51 @@ public class CrudTest {
 		m2.setMemail("ricemen1@ricemen.com");
 		
 		int icnt2 = template.insert("com.rm.member.insert_pk", m2);
-		System.out.println(m2.getMseq());
 		assertThat(icnt2, is(1));
+		
+		MemberVO member = template.selectOne("com.rm.member.select", m2.getMseq());
+		System.out.println(member.toString());
 	}
+	
+	@Test
+	public void update() {
+		MemberVO m = new MemberVO();
+		m.setMid("yoonseo");
+		m.setMpassword("cho1104");
+		m.setMemail("yoonseo@ricemen.com");
+		
+		int iInsertCnt = template.insert("com.rm.member.insert_pk", m);
+		assertThat(iInsertCnt, is(1));
+		
+		MemberVO m2 = new MemberVO();
+		m2.setMseq(m.getMseq());
+		m2.setMemail("yoonseo@gmail.com");		
+		int iUpdateCnt = template.update("com.rm.member.update", m2);
+		assertThat(iUpdateCnt, is(1));
+		
+		MemberVO member = template.selectOne("com.rm.member.select", m.getMseq());
+		System.out.println(member.toString());
+	}
+	
+	@Test
+	public void delete() {
+		MemberVO m = new MemberVO();
+		m.setMid("jieun");
+		m.setMpassword("lee1009");
+		m.setMemail("jieun@ricemen.com");
+		
+		int iInsertCnt = template.insert("com.rm.member.insert_pk", m);
+		assertThat(iInsertCnt, is(1));
+		
+		MemberVO member = template.selectOne("com.rm.member.select", m.getMseq());
+		System.out.println(member.toString());
+		
+		int iDeleteCnt = template.delete("com.rm.member.delete", m.getMseq());
+		assertThat(iDeleteCnt, is(1));
+		
+	}
+	
+	
 	
 	@After
 	public void destory() {
